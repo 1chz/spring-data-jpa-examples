@@ -1,0 +1,13 @@
+spring:
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    root: warn
+    org:
+      springframework:
+        orm:
+          jpa: debug
+          transaction: debug

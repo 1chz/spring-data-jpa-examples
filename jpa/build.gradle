@@ -1,0 +1,7 @@
+configurations {
+    jar.archiveName = 'jpa.jar'
+}
+
+dependencies {
+    implementation 'org.hibernate:hibernate-entitymanager:5.5.3.Final'
+}

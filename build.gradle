@@ -1,0 +1,63 @@
+buildscript {
+    ext {
+        springBootVersion = '2.5.1'
+        managementVersion = '1.0.11.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "io.spring.gradle:dependency-management-plugin:$managementVersion"
+    }
+}
+
+allprojects {
+    group = 'learn.jpa'
+    version = ''
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+        runtimeOnly 'com.h2database:h2'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+
+        implementation 'commons-io:commons-io:2.8.0'
+        implementation 'org.modelmapper:modelmapper:2.4.4'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+['jpa', 'data-jpa'].each {
+    project(it) {
+        bootJar.enabled(false)
+        jar.enabled(true)
+    }
+}
