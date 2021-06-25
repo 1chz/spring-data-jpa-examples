@@ -20,11 +20,11 @@ abstract class BaseEntity implements Serializable {
     @CreatedDate
     @Column(updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private LocalDateTime regDate;
+    private LocalDateTime createAt;
 
     @LastModifiedDate
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private LocalDateTime modDate;
+    private LocalDateTime updateAt;
 
     public boolean isNew() {
         return this.id == null;
