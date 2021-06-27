@@ -60,9 +60,11 @@ hibernate 매핑시 `ImprovedNamingStrategy`를 기본 클래스로 사용하고
 
 이 API는 생성자의 인수를 읽을 수 없기 때문에 인수가 존재하지 않는 기본 생성자가 반드시 필요하다.
 
-JPA 구현체로 Hibernate 벤더를 사용하는 경우 Hibernate 내부적으로 바이트코드를 조작하는 라이브러리를 도입하여 이러한 이슈를 어느정도 보완해준다고 하나
+JPA 구현체로 Hibernate 벤더를 사용하는 경우 Hibernate 내부적으로 바이트코드를 조작하는 라이브러리를 도입하여
 
-완벽한 해결책이 아니기에 기본 생성자 없이 동작하기도, 동작하지 않기도 하는 경우가 발생하여 오히려 더 나쁜 상황을 야기할 수 있으므로,
+이러한 이슈를 어느정도 보완해준다고 하나 역시 완벽한 해결책이 아니며
+
+기본 생성자 없이 동작할 수도 있지만, 오히려 동작하지 않기도 하는 경우가 발생하여 오히려 더 안 좋은 상황을 야기할 수 있으므로,
 
 기본 생성자 만큼은 반드시 생성하는걸 권고하고 있다.
 
@@ -158,7 +160,7 @@ public class Memeber{
 
 [재난급 서버 장애내고 개발자 인생 끝날뻔 한 썰 - 납량특집! DB에 테이블이 어디로 갔지?](https://youtu.be/SWZcrdmmLEU)
 
-![youtube](https://i.ytimg.com/an_webp/SWZcrdmmLEU/mqdefault_6s.webp?du=3000&sqp=CLKr3IYG&rs=AOn4CLB9vj2jLdbqfXFmYiMfnPrA8mUYKQ)
+![image](https://user-images.githubusercontent.com/71188307/123533309-3c5c4400-d74f-11eb-9e6f-0c8a5f029c68.png)
 
 - 출처: [개발바닥 유튜브](https://www.youtube.com/channel/UCSEOUzkGNCT_29EU_vnBYjg)
 
@@ -352,7 +354,7 @@ DB의 `auto_increment` 기능을 사용 하고 JPA에서 `@GeneratedValue(strate
 
 `String`은 enum 클래스의 상수 필드명 자체를 사용하기 때문에 enum 클래스에 변경사항이 생겨도 다른 코드에 영향을 주지 않는다. 
 
-`Ordinal`이 `String`에 비해 좋은 점도 분명히 있긴 한데, 그보다 실무에서는 휴먼에러를 줄이는 것이 더 중요한 과제이기 때문에 
+`Ordinal`이 `String`에 비해 좋은 점도 분명히 있긴 한데, 실무에서는 사소한 성능상의 이점보다 휴먼에러를 줄이는 것이 더 중요한 과제이기 때문에 
 
 성능상 손해를 좀 보더라도 안전한 코드를 작성하는게 더 좋다고 생각한다.
 
@@ -364,9 +366,9 @@ DB의 `auto_increment` 기능을 사용 하고 JPA에서 `@GeneratedValue(strate
 
 `Date`와 `Calendar`관련 어노테이션인데, 이 두 클래스는 현 시점에서 자바 플랫폼 라이브러리에서 실패한 클래스이므로 따로 작성하지 않는다.
 
-이 객체들은 자바 초창기에 별다른 노하우가 없던 상황에 불변 객체로 만들어지지 못했었고, 이로 인한 많은 문제가 발생하고 있다.
+이 객체들은 별다른 노하우가 없던 자바 초창기에 불변 객체로 만들어지지 못했었고, 이로 인한 많은 문제가 발생하고 있다.
 
-자바 8이 주류로 자리잡고 `Date`와 `Calendar`의 대부분의 Public API가 `Deprecated` 됐으며 
+자바 8이 주류로 자리잡고 `Date`와 `Calendar`의 대부분 Public API가 `Deprecated` 됐으며 
 
 `LocalDate`, `LocalDateTime`이 주류로 사용되고 있는 현 시점에서
 
@@ -388,7 +390,7 @@ DB의 `auto_increment` 기능을 사용 하고 JPA에서 `@GeneratedValue(strate
 
 ![image](https://user-images.githubusercontent.com/71188307/123533064-6876c580-d74d-11eb-9133-82d950533243.png)
 
-데이터베이스의 BLOB, CLOB 타입과 매핑한다.
+데이터베이스의 `BLOB`, `CLOB` 타입과 매핑한다.
 
 중요하지 않다고 생각되어 자세한 내용은 작성하지 않는다.
 
@@ -402,7 +404,7 @@ DB의 `auto_increment` 기능을 사용 하고 JPA에서 `@GeneratedValue(strate
 
 주로 엔티티에서 데이터베이스 테이블과 관련되지 않는 데이터를 작업하거나 할 때 사용한다.
 
-생각보다 종종 사용할 일이 있다.
+생각보다 종종 사용할 일이 있었다.
 
 ---
 
@@ -419,7 +421,7 @@ JPA가 엔티티에 접근하는 방식을 지정한다
 
 이 어노테이션을 생략하면 `@Id`의 위치에 따라 결정된다.
 
-우선순위는 `@Access`가 더 높다.
+우선순위는 `@Access`를 명시하는 것이 더 높다.
 
 ```java
 @Entity
