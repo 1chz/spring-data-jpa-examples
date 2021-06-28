@@ -5,7 +5,8 @@ import lombok.*;
 import javax.persistence.Entity;
 
 @Entity
-@ToString @Getter
+@Getter
+@ToString(callSuper = true)
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Book extends BaseEntity {

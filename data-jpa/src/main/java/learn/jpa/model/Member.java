@@ -6,7 +6,8 @@ import org.hibernate.annotations.BatchSize;
 import javax.persistence.*;
 
 @Entity
-@ToString @Getter
+@Getter
+@ToString(callSuper = true)
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity {

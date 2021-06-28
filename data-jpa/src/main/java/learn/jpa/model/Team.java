@@ -6,7 +6,8 @@ import javax.persistence.Entity;
 import java.util.Objects;
 
 @Entity
-@ToString @Getter
+@Getter
+@ToString(callSuper = true)
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Team extends BaseEntity {
