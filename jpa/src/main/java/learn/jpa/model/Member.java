@@ -19,6 +19,9 @@ public class Member {
     @NonNull
     private int age;
 
+    @OneToOne
+    private Cabinet cabinet;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 
@@ -32,5 +35,6 @@ public class Member {
             throw new IllegalArgumentException("Team is null!");
         }
         this.team = team;
+        this.team.getMembers().add(this);
     }
 }
