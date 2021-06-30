@@ -1,4 +1,4 @@
-# 📕 Entity Mapping Basic
+# 📕 연관관계 매핑 기초
 작성자: 한창훈
 
 ---
