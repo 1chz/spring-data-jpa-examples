@@ -1,23 +1,28 @@
 package learn.jpa.model;
 
 import lombok.*;
-import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(callSuper = true)
+@ToString(exclude = "team")
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member extends BaseEntity {
+public class Member {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NonNull
     private String name;
 
     @NonNull
     private int age;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne
+    private Cabinet cabinet;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 
     @Builder(toBuilder = true)
@@ -30,5 +35,6 @@ public class Member extends BaseEntity {
             throw new IllegalArgumentException("Team is null!");
         }
         this.team = team;
+        this.team.getMembers().add(this);
     }
 }
