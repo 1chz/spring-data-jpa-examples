@@ -1,16 +1,13 @@
 package learn.jpa.model;
 
 import learn.jpa.repository.MemberRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,7 +24,7 @@ class MemberTest {
         // given
         Team team = new Team(teamName);
         Member member = Member.createMember(memberName, memberAge);
-        member.toJoinTeam(team);
+        member.changeTeam(team);
 
         // when
         Member saveMember = memberRepository.save(member);

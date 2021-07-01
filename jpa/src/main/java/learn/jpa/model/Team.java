@@ -1,16 +1,13 @@
 package learn.jpa.model;
 
+import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 @Entity
-@Getter
+@Getter @Setter
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Team {
@@ -21,5 +18,10 @@ public class Team {
     private String name;
 
     @OneToMany(mappedBy = "team")
-    private List<Member> members;
+    private List<Member> members = new ArrayList<>();
+
+    public void joinMember(Member member){
+        this.members.add(member);
+        member.changeTeam(this);
+    }
 }

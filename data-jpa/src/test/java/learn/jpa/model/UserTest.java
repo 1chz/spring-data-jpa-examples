@@ -3,13 +3,19 @@ package learn.jpa.model;
 import learn.jpa.repository.UserRepository;
 import learn.jpa.type.Gender;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 
 @DataJpaTest
 class UserTest {
+    Logger log = LoggerFactory.getLogger(UserTest.class);
+
     @Autowired
     UserRepository userRepository;
 
@@ -21,7 +27,8 @@ class UserTest {
         userRepository.saveAndFlush(user);
         // postPersist
 
-        User findUser = userRepository.findById(1L).orElseThrow(NoSuchElementException::new);
+        User findUser = userRepository.findById(1L)
+                                      .orElseThrow(NoSuchElementException::new);
 
         // preUpdate
         findUser.changeUserName("changeName");
@@ -33,6 +40,6 @@ class UserTest {
         userRepository.flush();
         // postRemove
 
-        System.out.println("findUser = " + findUser);
+        log.info("findUser = {}", findUser);
     }
 }

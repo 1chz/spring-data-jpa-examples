@@ -5,6 +5,7 @@
 	<persistence-unit name="pure-jpa">
 		<class>learn.jpa.model.Team</class>
 		<class>learn.jpa.model.Member</class>
+		<class>learn.jpa.model.Cabinet</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.user" value="sa" />

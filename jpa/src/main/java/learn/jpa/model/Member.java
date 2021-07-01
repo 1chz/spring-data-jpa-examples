@@ -19,10 +19,7 @@ public class Member {
     @NonNull
     private int age;
 
-    @OneToOne
-    private Cabinet cabinet;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Team team;
 
     @Builder(toBuilder = true)
@@ -30,9 +27,12 @@ public class Member {
         return new Member(name, age);
     }
 
-    public void toJoinTeam(Team team) {
+    public void changeTeam(Team team) {
         if(team == null) {
             throw new IllegalArgumentException("Team is null!");
+        }
+        if(this.team != null) {
+            this.team.getMembers().remove(this);
         }
         this.team = team;
         this.team.getMembers().add(this);

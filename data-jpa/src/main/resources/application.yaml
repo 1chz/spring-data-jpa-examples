@@ -14,9 +14,5 @@ spring:
 
 logging:
   level:
-    root: warn
+    root: info
     org:
-      springframework:
-        orm:
-          jpa: debug
-          transaction: debug

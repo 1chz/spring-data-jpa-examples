@@ -1,14 +1,16 @@
 package learn.jpa.model;
 
 import lombok.*;
-import org.hibernate.annotations.BatchSize;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Getter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity {
     @NonNull
@@ -17,15 +19,20 @@ public class Member extends BaseEntity {
     @NonNull
     private int age;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Team team;
 
     @Builder(toBuilder = true)
     public static Member createMember(String name, int age) {
         return new Member(name, age);
     }
+//
+//    private Member(String name, int age) {
+//        this.name = name;
+//        this.age = age;
+//    }
 
-    public void toJoinTeam(Team team) {
+    public void changeTeam(Team team) {
         if(team == null) {
             throw new IllegalArgumentException("Team is null!");
         }
