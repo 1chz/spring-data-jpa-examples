@@ -26,11 +26,6 @@ public class Member extends BaseEntity {
     public static Member createMember(String name, int age) {
         return new Member(name, age);
     }
-//
-//    private Member(String name, int age) {
-//        this.name = name;
-//        this.age = age;
-//    }
 
     public void changeTeam(Team team) {
         if(team == null) {

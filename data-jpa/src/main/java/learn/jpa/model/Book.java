@@ -2,7 +2,7 @@ package learn.jpa.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 @Getter
