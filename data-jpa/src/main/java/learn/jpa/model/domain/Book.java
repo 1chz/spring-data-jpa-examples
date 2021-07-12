@@ -1,5 +1,7 @@
-package learn.jpa.model;
+package learn.jpa.model.domain;
 
+import learn.jpa.model.BaseEntity;
+import learn.jpa.model.value.Publisher;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,8 +9,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Book extends BaseEntity {
     @NonNull
     private String title;
@@ -19,16 +21,16 @@ public class Book extends BaseEntity {
     @NonNull
     private Publisher publisher;
 
-    @Builder(toBuilder = true)
-    public static Book createBook(String title, String author, Publisher publisher) {
+    @Builder
+    public static Book of(String title, String author, Publisher publisher) {
         return new Book(title, author, publisher);
     }
 
     public String getPublisherName() {
-        return publisher.name;
+        return this.publisher.getName();
     }
 
     public String getPublisherCountry() {
-        return publisher.country;
+        return this.publisher.getCountry();
     }
 }

@@ -1,4 +1,4 @@
-package learn.jpa.model;
+package learn.jpa.model.domain;
 
 import learn.jpa.repository.UserRepository;
 import learn.jpa.type.Gender;
@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 

@@ -1,5 +1,6 @@
-package learn.jpa.model;
+package learn.jpa.model.domain;
 
+import learn.jpa.model.BaseEntity;
 import learn.jpa.type.Gender;
 import lombok.*;
 

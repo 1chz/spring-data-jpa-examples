@@ -1,5 +1,7 @@
-package learn.jpa.model;
+package learn.jpa.model.domain;
 
+import learn.jpa.model.domain.Member;
+import learn.jpa.model.domain.Team;
 import learn.jpa.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

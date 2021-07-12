@@ -1,9 +1,8 @@
 package learn.jpa.repository;
 
-import learn.jpa.model.Member;
+import learn.jpa.model.domain.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

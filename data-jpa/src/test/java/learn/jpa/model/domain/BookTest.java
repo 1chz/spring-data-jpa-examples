@@ -1,26 +1,33 @@
-package learn.jpa.model;
+package learn.jpa.model.domain;
 
+import learn.jpa.model.domain.Book;
+import learn.jpa.model.value.Publisher;
+import learn.jpa.repository.BookRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 class BookTest {
-    static final String title = "jpa-in-action";
-    static final String author = "siro";
-    static final String publisherName = "publishing-company";
-    static final String publisherCountry = "korea";
+    @Autowired
+    BookRepository repository;
 
     @Test
     @DisplayName("객체_필드_테스트")
     void objectField() {
         // given
-        Publisher publisher = new Publisher(publisherName, publisherCountry);
+        String title = "jpa-in-action";
+        String author = "siro";
+        String publisherName = "publishing-company";
+        String publisherCountry = "korea";
+        Publisher publisher = Publisher.of(publisherName, publisherCountry);
+        Book book = Book.of(title, author, publisher);
 
         // when
-        Book book = Book.createBook(title, author, publisher);
+        repository.saveAndFlush(book);
 
         // then
         assertThat(book.getPublisherName()).isEqualTo(publisherName);
