@@ -3,22 +3,28 @@ package learn.jpa.model;
 import learn.jpa.model.value.Publisher;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
 @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Book extends BaseEntity {
-    @NonNull
+    @NotNull
     private String title;
 
-    @NonNull
+    @NotNull
     private String author;
 
-    @NonNull
+    @NotNull
     private Publisher publisher;
+
+    private Book(String title, String author, Publisher publisher) {
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+    }
 
     @Builder
     public static Book of(String title, String author, Publisher publisher) {

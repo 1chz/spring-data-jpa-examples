@@ -4,11 +4,11 @@ import learn.jpa.type.Gender;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(
         name = "user",                                                              // 데이터베이스 테이블명
@@ -16,16 +16,16 @@ import javax.persistence.*;
         uniqueConstraints = @UniqueConstraint(columnNames = {"username", "email"}) // 해당 컬럼으로 복합 유니크 인덱스를 생성
         )
 public class User extends BaseEntity {
-    @NonNull
+    @NotNull
     private String username;
 
-    @NonNull
+    @NotNull
     private String password;
 
-    @NonNull
+    @NotNull
     private String email;
 
-    @NonNull
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
@@ -33,8 +33,15 @@ public class User extends BaseEntity {
     private String address;
 
     @Builder
-    public static User createUser(@NonNull String username, @NonNull String password, @NonNull String email, @NonNull Gender gender) {
+    public static User createUser(@NotNull String username, @NotNull String password, @NotNull String email, @NotNull Gender gender) {
         return new User(username, password, email, gender);
+    }
+
+    private User(String username, String password, String email, Gender gender) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
     }
 
     public void changeUserName(String username) {

@@ -5,22 +5,27 @@ import lombok.*;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @ToString
 @Embeddable
 @Access(AccessType.FIELD)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Name {
-    @NonNull
+    @NotNull
     private String firstName;
 
-    @NonNull
+    @NotNull
     private String lastName;
 
+    private Name(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     @Builder
-    public static Name of(@NonNull String firstName, @NonNull String lastName) {
+    public static Name of(@NotNull String firstName, @NotNull String lastName) {
         return new Name(firstName, lastName);
     }
 

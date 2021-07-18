@@ -1,11 +1,13 @@
 plugins {
     id 'java'
-    id 'jacoco'
     id 'org.springframework.boot' version '2.5.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'com.epages.restdocs-api-spec' version '0.11.3'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
+ext {
+    querydslDir = "$buildDir/generated/querydsl"
+}
 
 group = 'learn.jpa'
 version = ''
@@ -23,19 +25,6 @@ configurations {
 }
 
 dependencies {
-    annotationProcessor(
-            'org.projectlombok:lombok',
-            'org.springframework.boot:spring-boot-configuration-processor'
-    )
-
-    compileOnly(
-            'org.projectlombok:lombok'
-    )
-
-    runtimeOnly(
-            'com.h2database:h2'
-    )
-
     implementation(
             'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-data-jpa',
@@ -52,8 +41,35 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude group: "junit", module: "junit"
     }
+
+    annotationProcessor(
+            'org.projectlombok:lombok',
+            'org.springframework.boot:spring-boot-configuration-processor'
+    )
+
+    compileOnly(
+            'org.projectlombok:lombok'
+    )
+
+    runtimeOnly(
+            'com.h2database:h2'
+    )
 }
 
 test {
     useJUnitPlatform()
+}
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+sourceSets {
+    main.java.srcDir querydslDir
+}
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
 }

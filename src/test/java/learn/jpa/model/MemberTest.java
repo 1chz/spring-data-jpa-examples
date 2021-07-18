@@ -1,7 +1,5 @@
 package learn.jpa.model;
 
-import learn.jpa.model.Member;
-import learn.jpa.model.Team;
 import learn.jpa.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,10 +38,9 @@ class MemberTest {
      * Test Case
      */
     private static Stream<Arguments> provideArgs() {
-        return Stream.of(
-                Arguments.of("hibernate", "siro", 29),
-                Arguments.of("spring", "siro", 30),
-                Arguments.of("JPA", "siro", 31)
+        return Stream.of(Arguments.of("hibernate", "siro", 29),
+                         Arguments.of("spring", "siro", 30),
+                         Arguments.of("JPA", "siro", 31)
                         );
     }
 }

@@ -5,24 +5,30 @@ import learn.jpa.model.value.Name;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
 @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Customer extends BaseEntity {
-    @NonNull
+    @NotNull
     private Name name;
 
-    @NonNull
+    @NotNull
     private String phoneNumber;
 
-    @NonNull
+    @NotNull
     private Address address;
 
+    private Customer(Name name, String phoneNumber, Address address) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
     @Builder
-    public static Customer of(@NonNull Name name, @NonNull String phoneNumber, @NonNull Address address) {
+    public static Customer of(@NotNull Name name, @NotNull String phoneNumber, @NotNull Address address) {
         return new Customer(name, phoneNumber, address);
     }
 

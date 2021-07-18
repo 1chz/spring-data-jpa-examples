@@ -1,17 +1,22 @@
 package learn.jpa.model;
 
-import learn.jpa.model.BaseEntity;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Team extends BaseEntity {
-    @NonNull
+    @NotNull
     private String name;
+
+    public Team(String name) {
+        this.name = name;
+    }
 }

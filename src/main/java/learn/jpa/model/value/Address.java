@@ -5,26 +5,31 @@ import lombok.*;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @ToString
 @Embeddable
-@EqualsAndHashCode
 @Access(AccessType.FIELD)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Address {
-    @NonNull
+    @NotNull
     private String city;
 
-    @NonNull
+    @NotNull
     private String street;
 
-    @NonNull
+    @NotNull
     private String zipcode;
 
+    private Address(String city, String street, String zipcode) {
+        this.city = city;
+        this.street = street;
+        this.zipcode = zipcode;
+    }
+
     @Builder
-    public static Address of(@NonNull String city, @NonNull String street, @NonNull String zipcode) {
+    public static Address of(@NotNull String city, @NotNull String street, @NotNull String zipcode) {
         return new Address(city, street, zipcode);
     }
 

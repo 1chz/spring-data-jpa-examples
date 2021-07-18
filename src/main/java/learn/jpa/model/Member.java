@@ -6,21 +6,26 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
 @ToString(callSuper = true)
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity {
-    @NonNull
+    @NotNull
     private String name;
 
-    @NonNull
+    @NotNull
     private int age;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Team team;
+
+    private Member(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 
     @Builder(toBuilder = true)
     public static Member createMember(String name, int age) {

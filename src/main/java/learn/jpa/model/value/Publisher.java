@@ -4,24 +4,28 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @ToString
 @Embeddable
-@EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Publisher {
-    @NonNull
+    @NotNull
     @Column(name = "publisher_name")
     private String name;
 
-    @NonNull
+    @NotNull
     @Column(name = "publisher_country")
     private String country;
 
+    private Publisher(String name, String country) {
+        this.name = name;
+        this.country = country;
+    }
+
     @Builder
-    public static Publisher of(@NonNull String name, @NonNull String country) {
+    public static Publisher of(@NotNull String name, @NotNull String country) {
         return new Publisher(name, country);
     }
 }
