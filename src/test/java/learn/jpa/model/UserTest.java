@@ -12,8 +12,6 @@ import java.util.NoSuchElementException;
 
 @DataJpaTest
 class UserTest {
-    Logger log = LoggerFactory.getLogger(UserTest.class);
-
     @Autowired
     UserRepository userRepository;
 
@@ -37,7 +35,5 @@ class UserTest {
         userRepository.deleteById(1L);
         userRepository.flush();
         // postRemove
-
-        log.info("findUser = {}", findUser);
     }
 }
