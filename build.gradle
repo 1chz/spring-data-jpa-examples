@@ -52,10 +52,6 @@ dependencies {
             'org.projectlombok:lombok'
     )
 
-    testRuntimeOnly(
-            'org.projectlombok:lombok'
-    )
-
     runtimeOnly(
             'com.h2database:h2'
     )
