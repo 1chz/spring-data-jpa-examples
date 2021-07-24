@@ -73,4 +73,9 @@ class MemberTest {
         //        assertThat(saveMember).extracting("name", "age", "team")
         //                              .containsExactly(memberName, memberAge, team);
     }
+
+    @Test
+    void entityGraph() throws Exception{
+        memberRepository.findByName("siro");
+    }
 }

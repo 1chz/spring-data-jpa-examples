@@ -179,4 +179,10 @@ public class JpqlTest {
     void fetchJoin() throws Exception {
         em.createQuery("select m from Member m join fetch m.team").getResultList();
     }
+
+    @Test
+    @DisplayName("경로표현식")
+    void pathExpression() throws Exception {
+        em.createQuery("select m.team from Member m").getResultList();
+    }
 }
