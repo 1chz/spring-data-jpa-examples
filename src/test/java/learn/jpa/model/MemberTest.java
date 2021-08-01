@@ -27,8 +27,8 @@ class MemberTest {
         this.memberRepository = memberRepository;
     }
 
+    @MethodSource
     @ParameterizedTest
-    @MethodSource("provideArgs")
     @DisplayName("연관관계_매핑_테스트")
     void relationshipMapping(String teamName, String memberName, int memberAge) {
         // given
@@ -47,7 +47,7 @@ class MemberTest {
     /**
      * Test Case
      */
-    private static Stream<Arguments> provideArgs() {
+    private static Stream<Arguments> relationshipMapping() {
         return Stream.of(Arguments.of("hibernate", "siro", 29),
                          Arguments.of("spring", "siro", 30),
                          Arguments.of("JPA", "siro", 31)

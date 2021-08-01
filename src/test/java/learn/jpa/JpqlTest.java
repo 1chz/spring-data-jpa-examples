@@ -108,7 +108,7 @@ public class JpqlTest {
             Long id = (Long) o[0];
             String name = (String) o[1];
 
-            MemberDto memberDto = new MemberDto(id, name);
+            MemberDto memberDto = MemberDto.createMemberDto(id, name);
 
             memberDtos.add(memberDto);
         }
