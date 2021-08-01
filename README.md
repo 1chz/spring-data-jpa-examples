@@ -8,3 +8,4 @@
 6. [프록시](https://shirohoo.github.io/spring/spring-data-jpa/2021-07-11-jpa-6/)
 7. [값 타입](https://shirohoo.github.io/spring/spring-data-jpa/2021-07-12-jpa-7/)
 8. [JPQL](https://shirohoo.github.io/spring/spring-data-jpa/2021-07-22-jpa-8/)
+9. [Querydsl](https://shirohoo.github.io/spring/spring-data-jpa/2021-07-30-jpa-9/)
