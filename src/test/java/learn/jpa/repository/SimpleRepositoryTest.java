@@ -1,7 +1,6 @@
 package learn.jpa.repository;
 
 import learn.jpa.model.Simple;
-import lombok.RequiredArgsConstructor;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,10 +22,14 @@ import static org.springframework.data.domain.Sort.Order;
 import static org.springframework.data.domain.Sort.by;
 
 @DataJpaTest
-@RequiredArgsConstructor
 class SimpleRepositoryTest {
     private final SimpleRepository simpleRepository;
     private final TestEntityManager entityManager;
+
+    public SimpleRepositoryTest(SimpleRepository simpleRepository, TestEntityManager entityManager) {
+        this.simpleRepository = simpleRepository;
+        this.entityManager = entityManager;
+    }
 
     @BeforeEach
     void setUp() {

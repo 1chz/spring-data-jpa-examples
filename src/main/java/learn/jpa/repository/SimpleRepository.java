@@ -4,6 +4,7 @@ import learn.jpa.model.Simple;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public interface SimpleRepository extends JpaRepository<Simple, Long> {
 
     List<Simple> findByIdAfter(Long id);
 
+    @Modifying
     List<Simple> findByIdBefore(Long id);
 
     List<Simple> findByIdIsLessThanEqual(Long id);
