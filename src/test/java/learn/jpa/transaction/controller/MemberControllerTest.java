@@ -1,4 +1,4 @@
-package learn.jpa.controller;
+package learn.jpa.transaction.controller;
 
 import learn.jpa.model.Member;
 import learn.jpa.repository.MemberRepository;

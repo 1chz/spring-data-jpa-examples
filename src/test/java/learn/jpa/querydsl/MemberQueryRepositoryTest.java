@@ -12,6 +12,7 @@ import learn.jpa.config.JpaConfig;
 import learn.jpa.dto.MemberDto;
 import learn.jpa.dto.QMemberDto;
 import learn.jpa.fixture.Fixture;
+import learn.jpa.fixture.QuerydslTest;
 import learn.jpa.model.Member;
 import learn.jpa.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,8 +31,7 @@ import java.util.Objects;
 import static learn.jpa.model.QMember.member;
 import static learn.jpa.model.QTeam.team;
 
-@DataJpaTest
-@Import(JpaConfig.class)
+@QuerydslTest
 class MemberQueryRepositoryTest {
     @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
