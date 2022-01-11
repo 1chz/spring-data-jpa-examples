@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpa-in-action
+    url: jdbc:h2:mem:testdb
     username: sa
     password:
 
