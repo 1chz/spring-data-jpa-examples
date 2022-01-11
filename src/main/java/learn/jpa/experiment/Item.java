@@ -24,10 +24,19 @@ public class Item {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @Builder
     private Item(String name, String description, LocalDateTime createdAt) {
+        this(null, name, description, createdAt);
+    }
+
+    @Builder
+    private Item(Long id, String name, String description, LocalDateTime createdAt) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.createdAt = createdAt;
+    }
+
+    public static Item of(Long id, String name, String description, LocalDateTime createdAt) {
+        return new Item(id, name, description, createdAt);
     }
 }
